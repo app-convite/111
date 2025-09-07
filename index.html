@@ -97,7 +97,7 @@
     </a>
   </div>
 
-  <!-- Conteúdo oculto -->
+  <!-- Conteúdo oculto (aparece junto com o botão após 1 minuto) -->
   <div id="conteudo" class="hidden">
     <h2>Depoimentos Reais</h2>
     <div class="depoimentos">
@@ -134,13 +134,9 @@
   </div>
 
   <script>
-    // Mostrar conteúdo após 15 segundos
+    // Mostrar conteúdo e botão juntos após 1 minuto (60000ms)
     setTimeout(() => {
       document.getElementById("conteudo").classList.remove("hidden");
-    }, 15000);
-
-    // Mostrar botão abaixo do vídeo após 1 minuto (60000ms)
-    setTimeout(() => {
       document.getElementById("btn-video").classList.remove("hidden");
     }, 60000);
 
