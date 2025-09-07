@@ -87,8 +87,12 @@
       document.head.appendChild(s);
     </script>
 
-    <!-- Botão de Compra abaixo do vídeo -->
-    <a href="https://pay.compraasegura.xyz/lDW0ZaJW5ddGN7E" class="cta-btn" target="_blank" aria-label="Quero começar agora!">
+    <!-- Botão de Compra abaixo do vídeo (com delay de 1 minuto) -->
+    <a href="https://pay.compraasegura.xyz/lDW0ZaJW5ddGN7E" 
+       id="btn-video" 
+       class="cta-btn hidden" 
+       target="_blank" 
+       aria-label="Quero começar agora!">
       👉 Quero Começar Agora!
     </a>
   </div>
@@ -134,6 +138,11 @@
     setTimeout(() => {
       document.getElementById("conteudo").classList.remove("hidden");
     }, 15000);
+
+    // Mostrar botão abaixo do vídeo após 1 minuto (60000ms)
+    setTimeout(() => {
+      document.getElementById("btn-video").classList.remove("hidden");
+    }, 60000);
 
     // Mostrar pop-ups aleatórios de compra
     const popup = document.getElementById("popup");
