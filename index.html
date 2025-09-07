@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #2c003e; /* Fundo roxo escuro */
+      background: #2c003e;
       text-align: center;
       color: white;
     }
@@ -79,7 +79,7 @@
       border-radius: 8px;
       text-decoration: none;
       transition: 0.3s;
-      opacity: 0; /* Inicialmente invisível para animação */
+      opacity: 0;
     }
 
     .cta-btn:hover {
@@ -87,8 +87,37 @@
     }
 
     #conteudo {
-      opacity: 0; /* Inicialmente invisível para animação */
+      opacity: 0;
       transition: opacity 1s;
+    }
+
+    /* Barra de progresso */
+    .progress-container {
+      width: 80%;
+      max-width: 500px;
+      background: #444;
+      border-radius: 20px;
+      margin: 20px auto;
+      height: 25px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 100%;
+      background: #ffcc00;
+      border-radius: 20px;
+      transition: width 1s linear;
+      text-align: center;
+      line-height: 25px;
+      color: #2c003e;
+      font-weight: bold;
+    }
+
+    .units {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #ffcc00;
     }
   </style>
 </head>
@@ -103,6 +132,12 @@
       s.async=!0;
       document.head.appendChild(s);
     </script>
+
+    <!-- Barra de progresso -->
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar">10</div>
+    </div>
+    <div class="units" id="units">Disponível: 10 unidades</div>
 
     <!-- Botão de Compra abaixo do vídeo -->
     <a href="https://pay.compraasegura.xyz/lDW0ZaJW5ddGN7E" 
@@ -151,21 +186,41 @@
   </div>
 
   <script>
-    // Mostrar botão e conteúdo após 1 minuto com fade-in
-    setTimeout(() => {
-      const btn = document.getElementById("btn-video");
-      const conteudo = document.getElementById("conteudo");
+    // Estoque dinâmico
+    const progressBar = document.getElementById("progress-bar");
+    const unitsText = document.getElementById("units");
+    const btn = document.getElementById("btn-video");
+    const conteudo = document.getElementById("conteudo");
 
-      // Mostrar o conteúdo
-      conteudo.classList.remove("hidden");
+    let totalUnits = 10; // unidades iniciais
+    const finalUnits = 3; // unidades restantes após 1 minuto
+    const steps = totalUnits - finalUnits; // quantos passos
+    let currentStep = 0;
 
-      // Animação fade-in
-      btn.style.transition = "opacity 1s";
-      conteudo.style.transition = "opacity 1s";
-      btn.style.opacity = 1;
-      conteudo.style.opacity = 1;
-    }, 60000); // 1 minuto
+    const interval = setInterval(() => {
+      currentStep++;
+      const remainingUnits = totalUnits - currentStep;
+      const percentage = ((remainingUnits - finalUnits) / steps) * 100;
 
+      progressBar.style.width = percentage + "%";
+      progressBar.textContent = remainingUnits;
+      unitsText.textContent = "Disponível: " + remainingUnits + " unidades";
+
+      if (currentStep >= steps) {
+        clearInterval(interval);
+        progressBar.style.width = "0%";
+        progressBar.textContent = finalUnits;
+        unitsText.textContent = "Disponível: " + finalUnits + " unidades";
+
+        // Mostrar botão e conteúdo com fade-in
+        conteudo.classList.remove("hidden");
+        btn.style.transition = "opacity 1s";
+        conteudo.style.transition = "opacity 1s";
+        btn.style.opacity = 1;
+        conteudo.style.opacity = 1;
+      }
+    }, 6000); // 10 unidades → 1 minuto
+     
     // Pop-ups aleatórios
     const popup = document.getElementById("popup");
     function mostrarPopupAleatorio() {
