@@ -8,8 +8,9 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      background: #2c003e; /* Fundo roxo escuro */
       text-align: center;
+      color: white;
     }
     .hidden {
       display: none;
@@ -27,6 +28,7 @@
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 15px;
+      color: #333;
     }
     .depoimento img {
       max-width: 100%;
@@ -49,6 +51,7 @@
       display: none;
       animation: fadeIn 0.5s;
       font-size: 14px;
+      color: #000;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
@@ -59,8 +62,8 @@
       display: inline-block;
       margin: 30px auto;
       padding: 15px 30px;
-      background: #28a745;
-      color: white;
+      background: #ffcc00;
+      color: #2c003e;
       font-size: 18px;
       font-weight: bold;
       border-radius: 8px;
@@ -68,7 +71,7 @@
       transition: 0.3s;
     }
     .cta-btn:hover {
-      background: #218838;
+      background: #e6b800;
     }
   </style>
 </head>
@@ -83,6 +86,11 @@
       s.async=!0;
       document.head.appendChild(s);
     </script>
+
+    <!-- Botão de Compra abaixo do vídeo -->
+    <a href="https://pay.compraasegura.xyz/lDW0ZaJW5ddGN7E" class="cta-btn" target="_blank" aria-label="Quero começar agora!">
+      👉 Quero Começar Agora!
+    </a>
   </div>
 
   <!-- Conteúdo oculto -->
@@ -109,17 +117,11 @@
         <img src="images/IMG_20230213_100949_226.jpg" alt="Resultado rápido" onerror="this.src='images/fallback.jpg'">
         <p>Em menos de 15 dias já percebi mudanças incríveis. Estou feliz com o resultado!</p>
       </div>
-      <!-- Novo depoimento -->
       <div class="depoimento">
         <img src="images/IMG_20230324_171413_759.jpg" alt="Depoimento Extra" onerror="this.src='images/fallback.jpg'">
         <p>Resultado incrível! Em poucas semanas já percebi uma grande diferença no meu corpo. Super recomendo!</p>
       </div>
     </div>
-
-    <!-- Botão de Compra -->
-    <a href="https://pay.compraasegura.xyz/lDW0ZaJW5ddGN7E" class="cta-btn" target="_blank" aria-label="Quero começar agora!">
-      👉 Quero Começar Agora!
-    </a>
   </div>
 
   <!-- Pop-up de compra -->
