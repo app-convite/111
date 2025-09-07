@@ -12,9 +12,11 @@
       text-align: center;
       color: white;
     }
+
     .hidden {
       display: none;
     }
+
     .depoimentos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -23,6 +25,7 @@
       max-width: 1200px;
       padding: 20px;
     }
+
     .depoimento {
       background: #fff;
       border-radius: 10px;
@@ -30,15 +33,19 @@
       padding: 15px;
       color: #333;
     }
+
     .depoimento img {
       max-width: 100%;
       border-radius: 8px;
+      object-fit: cover;
     }
+
     .depoimento p {
       margin-top: 10px;
       font-size: 14px;
       color: #333;
     }
+
     /* Pop-up de compra */
     .popup {
       position: fixed;
@@ -52,11 +59,14 @@
       animation: fadeIn 0.5s;
       font-size: 14px;
       color: #000;
+      z-index: 1000;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     /* Botão de compra */
     .cta-btn {
       display: inline-block;
@@ -69,9 +79,16 @@
       border-radius: 8px;
       text-decoration: none;
       transition: 0.3s;
+      opacity: 0; /* Inicialmente invisível para animação */
     }
+
     .cta-btn:hover {
       background: #e6b800;
+    }
+
+    #conteudo {
+      opacity: 0; /* Inicialmente invisível para animação */
+      transition: opacity 1s;
     }
   </style>
 </head>
@@ -87,17 +104,17 @@
       document.head.appendChild(s);
     </script>
 
-    <!-- Botão de Compra abaixo do vídeo (com delay de 1 minuto) -->
+    <!-- Botão de Compra abaixo do vídeo -->
     <a href="https://pay.compraasegura.xyz/lDW0ZaJW5ddGN7E" 
        id="btn-video" 
-       class="cta-btn hidden" 
+       class="cta-btn" 
        target="_blank" 
        aria-label="Quero começar agora!">
       👉 Quero Começar Agora!
     </a>
   </div>
 
-  <!-- Conteúdo oculto (aparece junto com o botão após 1 minuto) -->
+  <!-- Conteúdo oculto -->
   <div id="conteudo" class="hidden">
     <h2>Depoimentos Reais</h2>
     <div class="depoimentos">
@@ -134,18 +151,27 @@
   </div>
 
   <script>
-    // Mostrar conteúdo e botão juntos após 1 minuto (60000ms)
+    // Mostrar botão e conteúdo após 1 minuto com fade-in
     setTimeout(() => {
-      document.getElementById("conteudo").classList.remove("hidden");
-      document.getElementById("btn-video").classList.remove("hidden");
-    }, 60000);
+      const btn = document.getElementById("btn-video");
+      const conteudo = document.getElementById("conteudo");
 
-    // Mostrar pop-ups aleatórios de compra
+      // Mostrar o conteúdo
+      conteudo.classList.remove("hidden");
+
+      // Animação fade-in
+      btn.style.transition = "opacity 1s";
+      conteudo.style.transition = "opacity 1s";
+      btn.style.opacity = 1;
+      conteudo.style.opacity = 1;
+    }, 60000); // 1 minuto
+
+    // Pop-ups aleatórios
     const popup = document.getElementById("popup");
     function mostrarPopupAleatorio() {
       popup.style.display = "block";
       setTimeout(() => { popup.style.display = "none"; }, 4000);
-      const proximo = Math.random() * 20000 + 10000; // entre 10 e 30s
+      const proximo = Math.random() * 20000 + 10000; // 10-30s
       setTimeout(mostrarPopupAleatorio, proximo);
     }
     mostrarPopupAleatorio();
